@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Orden Management System</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<!--Import jQuery before export.js-->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!--Data Table-->
+<script type="text/javascript"
+	src=" https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+<!--Export table buttons-->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+
+<!--Export table button CSS-->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+</head>
+<body>
+	<div class="container my-2">
+		<h1>Orden List</h1>
+
+		<a th:href="@{/showNewOrden}" class="btn btn-primary btn-sm mb-3"> Add Orden </a> 
+<!-- 		<a th:href="@{/change}" class="btn btn-primary btn-sm mb-3"> Change </a> -->
+
+		<table id="dataTable" border="1" class="display">
+			<thead>
+				<tr>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Direccion</th>
+					<th>Cantidad</th>
+					<th>Monto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="orden : ${vista}">
+					<td th:text="${orden.nombres}"></td>
+					<td th:text="${orden.apellidos}"></td>
+					<td th:text="${orden.direccion}"></td>
+					<td th:text="${orden.cantidad}"></td>
+					<td th:text="${orden.montoTotal}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<script>
+		$(document).ready(function() {
+		    $('#dataTable').DataTable();
+		});
+	</script>
+</body>
+</html>
